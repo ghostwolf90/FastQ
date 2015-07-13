@@ -80,8 +80,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     func showQrcodeToWeb(){
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController
+        var nc = self.storyboard?.instantiateViewControllerWithIdentifier("nc") as! UINavigationController
+        nc.pushViewController(vc, animated: false)
         vc.htmlUrl = tempQrcode
-        self.showDetailViewController(vc, sender: self)
+        self.showDetailViewController(nc, sender: self)
     }
     
     func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){

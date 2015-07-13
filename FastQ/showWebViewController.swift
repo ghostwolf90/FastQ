@@ -15,13 +15,6 @@ class showWebViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-        let urlPath:String = "www.eyeem.com"
-        var url:NSURL = NSURL(string:urlPath)!
-        var request:NSURLRequest = NSURLRequest(URL:url)
-        self.showWeb.loadRequest(request)
-        */
         // Do any additional setup after loading the view.
     }
     

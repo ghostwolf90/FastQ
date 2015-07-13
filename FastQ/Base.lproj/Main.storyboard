@@ -43,12 +43,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QS-kJ-e3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1035" y="265"/>
+            <point key="canvasLocation" x="1013" y="273"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kXB-6k-hWs">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o0V-1e-TqN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nc" automaticallyAdjustsScrollViewInsets="NO" id="o0V-1e-TqN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3ZN-lb-Cv1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -61,7 +61,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ic-Fx-t04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="684" y="265"/>
+            <point key="canvasLocation" x="620" y="273"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
