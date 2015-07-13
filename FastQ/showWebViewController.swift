@@ -11,7 +11,7 @@ import UIKit
 class showWebViewController: UIViewController {
 
     @IBOutlet weak var showWeb: UIWebView!
-    var dvc : String!
+    var htmlUrl : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class showWebViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        //let urlPath:String = "www.eyeem.com"
-        var urlPath:String = dvc
+        //let urlPath:String = "http://www.eyeem.com"
+        var urlPath:String = htmlUrl
         var url:NSURL = NSURL(string:urlPath)!
         var request:NSURLRequest = NSURLRequest(URL:url)
         self.showWeb.loadRequest(request)

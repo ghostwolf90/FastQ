@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6575D976-6778-40D5-AAE7-A3019B3FFB86</string>
+	<key>IDESourceControlProjectName</key>
+	<string>FastQ</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</key>
+		<string>https://github.com/ghostwolf90/FastQ.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FastQ.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ghostwolf90/FastQ.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FastQ</string>
+		</dict>
+	</array>
+</dict>
+</plist>

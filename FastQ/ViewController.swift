@@ -79,13 +79,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     }
     
     func showQrcodeToWeb(){
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! UIViewController
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController
+        vc.htmlUrl = tempQrcode
         self.showDetailViewController(vc, sender: self)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var svc = segue.destinationViewController as! showWebViewController
-        svc.dvc = tempQrcode
     }
     
     func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){
