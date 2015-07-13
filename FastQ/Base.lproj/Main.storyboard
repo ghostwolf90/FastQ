@@ -31,6 +31,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="XlK-aS-nx1">
+                                <rect key="frame" x="150" y="283" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -38,6 +42,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Back" id="btK-6a-Old"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="XlK-aS-nx1" id="jxm-eV-aau"/>
                         <outlet property="showWeb" destination="tvM-KD-8EW" id="Sqn-Zi-yLY"/>
                     </connections>
                 </viewController>

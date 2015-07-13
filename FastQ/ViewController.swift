@@ -14,6 +14,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var userDefult = NSUserDefaults.standardUserDefaults()
     var device : AVCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
     var tempQrcode: String!
+    var i:Int = 0
     
     //lazy 使用才會產生; input用鏡頭去做接收資料
     lazy var deviceInput : AVCaptureDeviceInput = {
@@ -95,7 +96,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         shapeLayer.path = path
         targetLayer.addSublayer(shapeLayer)
     }
-    
     
     func createPathForPoints(points: NSArray) -> CGMutablePathRef{
         let path = CGPathCreateMutable()
