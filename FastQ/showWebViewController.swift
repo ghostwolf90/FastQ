@@ -11,16 +11,26 @@ import UIKit
 class showWebViewController: UIViewController {
 
     @IBOutlet weak var showWeb: UIWebView!
+    var dvc : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlPath:String = "www.google.com"
+        /*
+        let urlPath:String = "www.eyeem.com"
         var url:NSURL = NSURL(string:urlPath)!
         var request:NSURLRequest = NSURLRequest(URL:url)
         self.showWeb.loadRequest(request)
-
+        */
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //let urlPath:String = "www.eyeem.com"
+        var urlPath:String = dvc
+        var url:NSURL = NSURL(string:urlPath)!
+        var request:NSURLRequest = NSURLRequest(URL:url)
+        self.showWeb.loadRequest(request)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

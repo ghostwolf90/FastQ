@@ -13,6 +13,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     // 初始化
     var userDefult = NSUserDefaults.standardUserDefaults()
     var device : AVCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    var tempQrcode: String!
     
     //lazy 使用才會產生; input用鏡頭去做接收資料
     lazy var deviceInput : AVCaptureDeviceInput = {
@@ -62,9 +63,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
                 readableCodeObject = previewLayer.transformedMetadataObjectForMetadataObject(readableCodeObject)as! AVMetadataMachineReadableCodeObject
                 showDetectedObjects(readableCodeObject)
                 
-                //label
-                //scanCodeOutput.text = readableCodeObject.stringValue
                 var scanCodeOutput = readableCodeObject.stringValue
+                tempQrcode = readableCodeObject.stringValue
                 
                 if scanCodeOutput != nil {
                     var alert = UIAlertController(title: "是否前往...", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
@@ -81,6 +81,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     func showQrcodeToWeb(){
         let vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! UIViewController
         self.showDetailViewController(vc, sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var svc = segue.destinationViewController as! showWebViewController
+        svc.dvc = tempQrcode
     }
     
     func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){
