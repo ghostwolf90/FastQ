@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="234.66666666666666" y="273.58666666666664"/>
         </scene>
-        <!--網路-->
+        <!--FastQ-->
         <scene sceneID="1KB-P9-aA0">
             <objects>
                 <viewController storyboardIdentifier="showWeb" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HCm-07-ZpW" customClass="showWebViewController" customModule="FastQ" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="網路" id="MAN-aJ-tX9">
+                    <navigationItem key="navigationItem" title="FastQ" id="MAN-aJ-tX9">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="btK-6a-Old">
                             <connections>
                                 <action selector="backToView:" destination="HCm-07-ZpW" id="QGw-LC-bAx"/>
