@@ -29,6 +29,11 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
         self.showWeb.loadRequest(request)
     }
     
+    @IBAction func backToView(sender: AnyObject) {
+        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
+        self.showDetailViewController(vc, sender: self)
+    }
+    
     func webViewDidFinishLoad(webView: UIWebView) {
         activityIndicator.stopAnimating()
     }
