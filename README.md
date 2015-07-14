@@ -5,7 +5,7 @@
 * [不使用segue畫面切換（Dot-use segue）](#dot-use-segue)
 * [使用等待refresh (Use-refresh)](#use-refresh)
 
-## 不使用segue畫面切換（Dot-use segue）
+### 不使用segue畫面切換（Dot-use segue）
 
 透過語法去載入指定的View Controller。
 
@@ -17,7 +17,7 @@
   vc.htmlUrl = tempQrcode
   self.showDetailViewController(nc, sender: self)
 ```
-## 使用等待refresh (Use-refresh)
+### 使用等待refresh (Use-refresh)
 
 透過元件Activity Indicator View加進View Controller。
 ```swift
