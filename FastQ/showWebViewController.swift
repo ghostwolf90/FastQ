@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Social
 
 class showWebViewController: UIViewController, UIWebViewDelegate {
 
@@ -32,6 +33,14 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
     @IBAction func backToView(sender: AnyObject) {
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
         self.showDetailViewController(vc, sender: self)
+    }
+    //分享按钮事件
+    @IBAction func shareUp(sender: AnyObject) {
+        var controller:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)
+        controller.setInitialText("一起来swift吧！")
+        controller.addImage(UIImage(named: "app720_12801"))
+        self.presentViewController(controller, animated: true, completion: nil)
+    
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -35,15 +36,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-KD-8EW">
-                                <rect key="frame" x="0.0" y="0.0" width="325" height="586"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-aS-nx1">
                                 <rect key="frame" x="150" y="283" width="20" height="20"/>
                             </activityIndicatorView>
+                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-KD-8EW">
+                                <rect key="frame" x="0.0" y="64" width="325" height="586"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="Aeh-Nf-vLv"/>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="NBm-O0-Rwm"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" id="duh-gh-AYc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" id="qN4-7X-6hC"/>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="qlN-Za-Heb"/>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="xjJ-G0-wlm"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="FastQ" id="MAN-aJ-tX9">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="btK-6a-Old">
@@ -51,7 +60,11 @@
                                 <action selector="backToView:" destination="HCm-07-ZpW" id="QGw-LC-bAx"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="KZ6-Xv-MSO"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="KZ6-Xv-MSO">
+                            <connections>
+                                <action selector="shareUp:" destination="HCm-07-ZpW" id="VnD-sc-pFW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="XlK-aS-nx1" id="jxm-eV-aau"/>
