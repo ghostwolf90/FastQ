@@ -36,11 +36,16 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
     }
     //分享按钮事件
     @IBAction func shareUp(sender: AnyObject) {
+        //Link to Safari
+        if let requestUrl = NSURL(string: htmlUrl) {
+            UIApplication.sharedApplication().openURL(requestUrl)
+        }
+        /*
         var controller:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)
         controller.setInitialText("一起来swift吧！")
         controller.addImage(UIImage(named: "app720_12801"))
         self.presentViewController(controller, animated: true, completion: nil)
-    
+        */
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {

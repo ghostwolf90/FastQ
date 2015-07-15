@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>6575D976-6778-40D5-AAE7-A3019B3FFB86</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>FastQ</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</key>
 		<string>https://github.com/ghostwolf90/FastQ.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>FastQ.xcodeproj/project.xcworkspace</string>
+	<string>FastQ.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>7FDCFFF4D311281A5EDE428E5C14465B39BE6C85</key>
