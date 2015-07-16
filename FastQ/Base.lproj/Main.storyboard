@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="EgQ-zJ-0se"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -22,7 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234.66666666666666" y="273.58666666666664"/>
+            <point key="canvasLocation" x="440" y="288.99999999999994"/>
         </scene>
         <!--FastQ-->
         <scene sceneID="1KB-P9-aA0">
@@ -33,24 +33,28 @@
                         <viewControllerLayoutGuide type="bottom" id="8ZD-1T-e5N"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Lcb-oe-pWl">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-aS-nx1">
-                                <rect key="frame" x="150" y="283" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-aS-nx1">
+                                <rect key="frame" x="150" y="283" width="300" height="52"/>
                             </activityIndicatorView>
                             <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-KD-8EW">
-                                <rect key="frame" x="0.0" y="64" width="325" height="586"/>
+                                <rect key="frame" x="0.0" y="64" width="605" height="586"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="XlK-aS-nx1" secondAttribute="trailing" constant="134" id="3TT-35-dAE"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="Aeh-Nf-vLv"/>
+                            <constraint firstItem="XlK-aS-nx1" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="134" id="Jbr-zh-KVE"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="NBm-O0-Rwm"/>
                             <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" id="duh-gh-AYc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" id="qN4-7X-6hC"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="qlN-Za-Heb"/>
+                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="XlK-aS-nx1" secondAttribute="bottom" constant="265" id="uUP-wm-dhl"/>
+                            <constraint firstItem="XlK-aS-nx1" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" constant="219" id="vWE-xl-c8N"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="xjJ-G0-wlm"/>
                         </constraints>
                     </view>
@@ -73,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6QS-kJ-e3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="273"/>
+            <point key="canvasLocation" x="1899" y="288"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kXB-6k-hWs">
@@ -92,12 +96,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ic-Fx-t04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="620" y="273"/>
+            <point key="canvasLocation" x="1162.5" y="288.38028169014081"/>
         </scene>
     </scenes>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

@@ -79,6 +79,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
     }
     
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        previewLayer.removeFromSuperlayer()
+        if (toInterfaceOrientation == UIInterfaceOrientation.Portrait){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait
+        }else if(toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeLeft
+        }else if (toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight
+        }
+        previewLayer.frame = CGRectMake(0, 0, view.frame.height, view.frame.width)
+        view.layer.insertSublayer(previewLayer, atIndex: 0)
+    }
+    
     func showQrcodeToWeb(){
         session.stopRunning()
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController

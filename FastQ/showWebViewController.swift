@@ -48,6 +48,12 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
         */
     }
     
+    //隱藏導覽列
+    override func viewWillAppear(animated: Bool) {
+        //super.viewWillAppear(animated)
+        //self.navigationController?.hidesBarsOnSwipe = true
+    }
+    
     func webViewDidFinishLoad(webView: UIWebView) {
         activityIndicator.stopAnimating()
     }
@@ -65,6 +71,7 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*
