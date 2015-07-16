@@ -79,6 +79,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
     }
     
+    //to make interface-based adjustments
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         previewLayer.removeFromSuperlayer()
         if (toInterfaceOrientation == UIInterfaceOrientation.Portrait){
