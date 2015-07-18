@@ -36,27 +36,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="XlK-aS-nx1">
-                                <rect key="frame" x="150" y="283" width="300" height="52"/>
-                            </activityIndicatorView>
-                            <webView contentMode="scaleToFill" misplaced="YES" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-KD-8EW">
-                                <rect key="frame" x="0.0" y="64" width="605" height="586"/>
+                            <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tvM-KD-8EW">
+                                <rect key="frame" x="0.0" y="64" width="605" height="542"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="usC-nz-yvc">
+                                <rect key="frame" x="290" y="325" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="XlK-aS-nx1" secondAttribute="trailing" constant="134" id="3TT-35-dAE"/>
+                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="usC-nz-yvc" secondAttribute="bottom" constant="255" id="4Xd-Wm-ppD"/>
+                            <constraint firstAttribute="centerX" secondItem="usC-nz-yvc" secondAttribute="centerX" id="5As-mY-6tX"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="Aeh-Nf-vLv"/>
-                            <constraint firstItem="XlK-aS-nx1" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="134" id="Jbr-zh-KVE"/>
+                            <constraint firstAttribute="centerY" secondItem="usC-nz-yvc" secondAttribute="centerY" id="AmB-gz-7lv"/>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="-16" id="CNt-Mz-qPk"/>
+                            <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="JaC-N2-KgL"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="NBm-O0-Rwm"/>
+                            <constraint firstItem="usC-nz-yvc" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" constant="261" id="Paz-9k-O5t"/>
                             <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" id="duh-gh-AYc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" constant="-6" id="f7N-9a-Qsb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" constant="-21" id="jJM-qa-6h6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" id="qN4-7X-6hC"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="qlN-Za-Heb"/>
-                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="XlK-aS-nx1" secondAttribute="bottom" constant="265" id="uUP-wm-dhl"/>
-                            <constraint firstItem="XlK-aS-nx1" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" constant="219" id="vWE-xl-c8N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="usC-nz-yvc" secondAttribute="trailing" constant="274" id="sLa-93-AiY"/>
+                            <constraint firstItem="usC-nz-yvc" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="274" id="tMv-il-1xB"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="xjJ-G0-wlm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Aeh-Nf-vLv"/>
+                                <exclude reference="NBm-O0-Rwm"/>
+                                <exclude reference="duh-gh-AYc"/>
+                                <exclude reference="qN4-7X-6hC"/>
+                                <exclude reference="qlN-Za-Heb"/>
+                                <exclude reference="xjJ-G0-wlm"/>
+                                <exclude reference="Paz-9k-O5t"/>
+                                <exclude reference="sLa-93-AiY"/>
+                                <exclude reference="tMv-il-1xB"/>
+                                <exclude reference="4Xd-Wm-ppD"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="FastQ" id="MAN-aJ-tX9">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="btK-6a-Old">
@@ -71,7 +91,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activityIndicator" destination="XlK-aS-nx1" id="jxm-eV-aau"/>
+                        <outlet property="activityIndicator" destination="usC-nz-yvc" id="tyd-ul-XJq"/>
                         <outlet property="showWeb" destination="tvM-KD-8EW" id="Sqn-Zi-yLY"/>
                     </connections>
                 </viewController>

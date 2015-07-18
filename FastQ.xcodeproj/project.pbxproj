@@ -10,10 +10,10 @@
 		5F3C588C1B5140970019904C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C588B1B5140970019904C /* AppDelegate.swift */; };
 		5F3C588E1B5140970019904C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C588D1B5140970019904C /* ViewController.swift */; };
 		5F3C58911B5140970019904C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C588F1B5140970019904C /* Main.storyboard */; };
-		5F3C58931B5140970019904C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C58921B5140970019904C /* Images.xcassets */; };
 		5F3C58961B5140970019904C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3C58941B5140970019904C /* LaunchScreen.xib */; };
 		5F3C58A21B5140970019904C /* FastQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C58A11B5140970019904C /* FastQTests.swift */; };
 		5F3C58B01B5145D90019904C /* showWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C58AF1B5145D90019904C /* showWebViewController.swift */; };
+		5FDBDF741B58BB1C00272CC2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDBDF731B58BB1C00272CC2 /* Images.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,12 +32,12 @@
 		5F3C588B1B5140970019904C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5F3C588D1B5140970019904C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5F3C58901B5140970019904C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5F3C58921B5140970019904C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5F3C58951B5140970019904C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5F3C589B1B5140970019904C /* FastQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F3C58A01B5140970019904C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5F3C58A11B5140970019904C /* FastQTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastQTests.swift; sourceTree = "<group>"; };
 		5F3C58AF1B5145D90019904C /* showWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showWebViewController.swift; sourceTree = "<group>"; };
+		5FDBDF731B58BB1C00272CC2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../../../Desktop/FastQ-master/FastQ/Images.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +82,8 @@
 				5F3C588B1B5140970019904C /* AppDelegate.swift */,
 				5F3C588D1B5140970019904C /* ViewController.swift */,
 				5F3C58AF1B5145D90019904C /* showWebViewController.swift */,
+				5FDBDF731B58BB1C00272CC2 /* Images.xcassets */,
 				5F3C588F1B5140970019904C /* Main.storyboard */,
-				5F3C58921B5140970019904C /* Images.xcassets */,
 				5F3C58941B5140970019904C /* LaunchScreen.xib */,
 				5F3C58891B5140970019904C /* Supporting Files */,
 			);
@@ -164,6 +164,7 @@
 				TargetAttributes = {
 					5F3C58851B5140970019904C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 4VS4GFB76H;
 					};
 					5F3C589A1B5140970019904C = {
 						CreatedOnToolsVersion = 6.4;
@@ -195,9 +196,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FDBDF741B58BB1C00272CC2 /* Images.xcassets in Resources */,
 				5F3C58911B5140970019904C /* Main.storyboard in Resources */,
 				5F3C58961B5140970019904C /* LaunchScreen.xib in Resources */,
-				5F3C58931B5140970019904C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = FastQIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FastQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -355,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = FastQIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FastQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;

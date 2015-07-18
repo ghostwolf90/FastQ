@@ -80,6 +80,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     }
     
     //to make interface-based adjustments
+    //每次你旋转屏幕时都会调用这个方法
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         previewLayer.removeFromSuperlayer()
         if (toInterfaceOrientation == UIInterfaceOrientation.Portrait){
