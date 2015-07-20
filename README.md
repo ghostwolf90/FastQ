@@ -5,6 +5,7 @@
 * [不使用segue畫面切換（Dot-use segue）](#dot-use-segue)
 * [使用等待refresh (Use-refresh)](#use-refresh)
 * [讓螢幕跟著旋轉 (tran-screen)](#tran-screen)
+* [使用iAd (use-iad)](#use-iad)
 
 ### 不使用segue畫面切換（Dot-use segue）
 
@@ -54,5 +55,35 @@ func webViewDidFinishLoad(webView: UIWebView) {
         view.layer.insertSublayer(previewLayer, atIndex: 0)
     }
 ```
+
+### 使用iAd (use-iad)
+```swift
+  @IBOutlet var adBannerView: ADBannerView!
+  override func viewDidLoad() {
+     //省略其他段落   
+      self.canDisplayBannerAds = true
+      self.adBannerView?.delegate = self
+      self.adBannerView?.hidden = true
+  }
+  func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+  }
+  func bannerViewDidLoadAd(banner: ADBannerView!) {
+        self.adBannerView?.hidden = false
+  }
+    
+  func bannerViewActionDidFinish(banner: ADBannerView!) {
+        
+  }
+    
+  func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+      return true
+  }
+    
+  func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+      self.adBannerView?.hidden = true
+  }
+```
+
 
 
