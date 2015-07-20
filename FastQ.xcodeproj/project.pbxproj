@@ -14,6 +14,7 @@
 		5F3C58A21B5140970019904C /* FastQTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C58A11B5140970019904C /* FastQTests.swift */; };
 		5F3C58B01B5145D90019904C /* showWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3C58AF1B5145D90019904C /* showWebViewController.swift */; };
 		5FDBDF741B58BB1C00272CC2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FDBDF731B58BB1C00272CC2 /* Images.xcassets */; };
+		5FDDAC6F1B5A1EBD00F50979 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDDAC6E1B5A1EBD00F50979 /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		5F3C58A11B5140970019904C /* FastQTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastQTests.swift; sourceTree = "<group>"; };
 		5F3C58AF1B5145D90019904C /* showWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = showWebViewController.swift; sourceTree = "<group>"; };
 		5FDBDF731B58BB1C00272CC2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../../../Desktop/FastQ-master/FastQ/Images.xcassets"; sourceTree = "<group>"; };
+		5FDDAC6E1B5A1EBD00F50979 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FDDAC6F1B5A1EBD00F50979 /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +64,7 @@
 		5F3C587D1B5140970019904C = {
 			isa = PBXGroup;
 			children = (
+				5FDDAC6E1B5A1EBD00F50979 /* iAd.framework */,
 				5F3C58881B5140970019904C /* FastQ */,
 				5F3C589E1B5140970019904C /* FastQTests */,
 				5F3C58871B5140970019904C /* Products */,
@@ -348,8 +352,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FastQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -360,8 +365,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = FastQ/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

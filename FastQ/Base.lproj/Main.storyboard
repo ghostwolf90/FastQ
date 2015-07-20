@@ -43,24 +43,46 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="usC-nz-yvc">
                                 <rect key="frame" x="290" y="325" width="20" height="20"/>
                             </activityIndicatorView>
+                            <adBannerView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" horizontalHuggingPriority="1" verticalHuggingPriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="fer-sL-CbS">
+                                <rect key="frame" x="140" y="542" width="320" height="50"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HCm-07-ZpW" id="AY4-6N-iDQ"/>
+                                </connections>
+                            </adBannerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="usC-nz-yvc" secondAttribute="bottom" constant="255" id="4Xd-Wm-ppD"/>
                             <constraint firstAttribute="centerX" secondItem="usC-nz-yvc" secondAttribute="centerX" id="5As-mY-6tX"/>
+                            <constraint firstItem="fer-sL-CbS" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="124" id="5g5-QF-bBZ"/>
+                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="fer-sL-CbS" secondAttribute="bottom" id="6k5-IA-s3G"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="Aeh-Nf-vLv"/>
                             <constraint firstAttribute="centerY" secondItem="usC-nz-yvc" secondAttribute="centerY" id="AmB-gz-7lv"/>
+                            <constraint firstAttribute="centerY" secondItem="fer-sL-CbS" secondAttribute="centerY" id="BUW-t2-RhD"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="-16" id="CNt-Mz-qPk"/>
+                            <constraint firstAttribute="centerX" secondItem="fer-sL-CbS" secondAttribute="centerX" id="G01-f6-ql6"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="JaC-N2-KgL"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" id="NBm-O0-Rwm"/>
+                            <constraint firstAttribute="centerY" secondItem="fer-sL-CbS" secondAttribute="centerY" id="OMB-pf-j5l"/>
                             <constraint firstItem="usC-nz-yvc" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" constant="261" id="Paz-9k-O5t"/>
+                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="fer-sL-CbS" secondAttribute="bottom" constant="8" id="UhC-Eb-Cte"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fer-sL-CbS" secondAttribute="trailing" constant="124" id="WiO-bX-JTx"/>
+                            <constraint firstAttribute="centerX" secondItem="fer-sL-CbS" secondAttribute="centerX" id="b3x-m9-frz"/>
+                            <constraint firstAttribute="centerX" secondItem="fer-sL-CbS" secondAttribute="centerX" id="bDq-zZ-Yoa"/>
                             <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" id="duh-gh-AYc"/>
                             <constraint firstAttribute="bottomMargin" secondItem="tvM-KD-8EW" secondAttribute="bottom" constant="-6" id="f7N-9a-Qsb"/>
+                            <constraint firstItem="fer-sL-CbS" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="124" id="fkP-7l-vbj"/>
+                            <constraint firstAttribute="centerX" secondItem="fer-sL-CbS" secondAttribute="centerX" id="gED-Eh-W25"/>
+                            <constraint firstItem="fer-sL-CbS" firstAttribute="leading" secondItem="tvM-KD-8EW" secondAttribute="trailing" constant="-447" id="ih5-yo-hi2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" constant="-21" id="jJM-qa-6h6"/>
+                            <constraint firstAttribute="centerY" secondItem="fer-sL-CbS" secondAttribute="centerY" id="oUW-AO-FRj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tvM-KD-8EW" secondAttribute="trailing" id="qN4-7X-6hC"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="qlN-Za-Heb"/>
+                            <constraint firstItem="fer-sL-CbS" firstAttribute="leading" secondItem="tvM-KD-8EW" secondAttribute="trailing" constant="-447" id="rzb-IU-bR6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="usC-nz-yvc" secondAttribute="trailing" constant="274" id="sLa-93-AiY"/>
                             <constraint firstItem="usC-nz-yvc" firstAttribute="leading" secondItem="Lcb-oe-pWl" secondAttribute="leadingMargin" constant="274" id="tMv-il-1xB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fer-sL-CbS" secondAttribute="trailing" constant="124" id="wUx-gT-J0q"/>
+                            <constraint firstItem="8ZD-1T-e5N" firstAttribute="top" secondItem="fer-sL-CbS" secondAttribute="bottom" constant="8" id="xdd-ig-ZUk"/>
                             <constraint firstItem="tvM-KD-8EW" firstAttribute="top" secondItem="fcI-hR-jTu" secondAttribute="bottom" id="xjJ-G0-wlm"/>
                         </constraints>
                         <variation key="default">
@@ -74,7 +96,20 @@
                                 <exclude reference="Paz-9k-O5t"/>
                                 <exclude reference="sLa-93-AiY"/>
                                 <exclude reference="tMv-il-1xB"/>
+                                <exclude reference="5g5-QF-bBZ"/>
+                                <exclude reference="BUW-t2-RhD"/>
+                                <exclude reference="G01-f6-ql6"/>
+                                <exclude reference="OMB-pf-j5l"/>
+                                <exclude reference="WiO-bX-JTx"/>
+                                <exclude reference="b3x-m9-frz"/>
+                                <exclude reference="bDq-zZ-Yoa"/>
+                                <exclude reference="gED-Eh-W25"/>
+                                <exclude reference="ih5-yo-hi2"/>
+                                <exclude reference="oUW-AO-FRj"/>
+                                <exclude reference="rzb-IU-bR6"/>
                                 <exclude reference="4Xd-Wm-ppD"/>
+                                <exclude reference="6k5-IA-s3G"/>
+                                <exclude reference="UhC-Eb-Cte"/>
                             </mask>
                         </variation>
                     </view>
@@ -92,6 +127,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="usC-nz-yvc" id="tyd-ul-XJq"/>
+                        <outlet property="adBannerView" destination="fer-sL-CbS" id="lJd-kS-ObQ"/>
                         <outlet property="showWeb" destination="tvM-KD-8EW" id="Sqn-Zi-yLY"/>
                     </connections>
                 </viewController>

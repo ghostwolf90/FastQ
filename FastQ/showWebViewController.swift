@@ -6,13 +6,25 @@
 //  Copyright (c) 2015年 Laibit. All rights reserved.
 //
 
+/*
+簡單，方便，快速
+沒有複雜的操作，
+你要面對的就只有，
+遇到Qrcode，立馬掃描，馬上瀏覽！
+您值得擁有更好的Qrcode App！
+
+*/
+
 import UIKit
 import Social
+import iAd
 
-class showWebViewController: UIViewController, UIWebViewDelegate {
+class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDelegate {
 
     @IBOutlet weak var showWeb: UIWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet var adBannerView: ADBannerView!
     
     var htmlUrl : String!
     let refreshControl = UIRefreshControl()
@@ -28,13 +40,40 @@ class showWebViewController: UIViewController, UIWebViewDelegate {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         self.showWeb.loadRequest(request)
+        
+        self.canDisplayBannerAds = true
+        self.adBannerView?.delegate = self
+        self.adBannerView?.hidden = true
     }
     
     @IBAction func backToView(sender: AnyObject) {
         var vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
         self.showDetailViewController(vc, sender: self)
     }
-    //分享按钮事件
+    
+    
+    func bannerViewWillLoadAd(banner: ADBannerView!) {
+        
+    }
+    
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        self.adBannerView?.hidden = false
+    }
+    
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        
+    }
+    
+    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+        
+        return true
+    }
+    
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+            self.adBannerView?.hidden = true
+    }
+    
+    //分享按钮事件 至Safari
     @IBAction func shareUp(sender: AnyObject) {
         //Link to Safari
         if let requestUrl = NSURL(string: htmlUrl) {
