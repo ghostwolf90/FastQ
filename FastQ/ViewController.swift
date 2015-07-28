@@ -68,8 +68,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
                 tempQrcode = readableCodeObject.stringValue
                 
                 if scanCodeOutput != nil {
-                    var alert = UIAlertController(title: "是否前往...", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                    alert.addAction(UIAlertAction(title:"確定",style:UIAlertActionStyle.Default, handler:{(UIAlertAction) -> Void in
+                    var alert = UIAlertController(title: "GO!", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                    alert.addAction(UIAlertAction(title:"Enter",style:UIAlertActionStyle.Default, handler:{(UIAlertAction) -> Void in
                         println("你點擊了確定!")
                         self.showQrcodeToWeb()
                     }))
