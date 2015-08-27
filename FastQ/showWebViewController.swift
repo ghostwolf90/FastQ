@@ -31,6 +31,7 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        canDisplayBannerAds = true
         var urlPath:String = htmlUrl
         var url:NSURL = NSURL(string:urlPath)!
         var request:NSURLRequest = NSURLRequest(URL:url)
