@@ -49,7 +49,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     func clearTargetLayer(){
         if targetLayer.sublayers != nil{
-            for sublayer in targetLayer.sublayers{
+            for sublayer in targetLayer.sublayers!{
                 sublayer.removeFromSuperlayer()
             }
         }
@@ -64,13 +64,13 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
                 readableCodeObject = previewLayer.transformedMetadataObjectForMetadataObject(readableCodeObject)as! AVMetadataMachineReadableCodeObject
                 showDetectedObjects(readableCodeObject)
                 
-                var scanCodeOutput = readableCodeObject.stringValue
+                let scanCodeOutput = readableCodeObject.stringValue
                 tempQrcode = readableCodeObject.stringValue
                 
                 if scanCodeOutput != nil {
-                    var alert = UIAlertController(title: "GO!", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
+                    let alert = UIAlertController(title: "GO!", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
                     alert.addAction(UIAlertAction(title:"Enter",style:UIAlertActionStyle.Default, handler:{(UIAlertAction) -> Void in
-                        println("你點擊了確定!")
+                        print("你點擊了確定!")
                         self.showQrcodeToWeb()
                     }))
                     self.presentViewController(alert, animated: true, completion: nil)
@@ -96,19 +96,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     func showQrcodeToWeb(){
         session.stopRunning()
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController
-        var nc = self.storyboard?.instantiateViewControllerWithIdentifier("nc") as! UINavigationController
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController
+        let nc = self.storyboard?.instantiateViewControllerWithIdentifier("nc") as! UINavigationController
         nc.pushViewController(vc, animated: false)
         vc.htmlUrl = tempQrcode
         self.showDetailViewController(nc, sender: self)
     }
     
     func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){
-        var shapeLayer = CAShapeLayer()
+        let shapeLayer = CAShapeLayer()
         shapeLayer.strokeColor = UIColor.greenColor().CGColor
         shapeLayer.lineWidth = 2
         shapeLayer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
-        var path = createPathForPoints(codeObject.corners)
+        let path = createPathForPoints(codeObject.corners)
         shapeLayer.path = path
         targetLayer.addSublayer(shapeLayer)
     }
@@ -118,12 +118,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         var point = CGPoint()
         
         if points.count > 0 {
-            CGPointMakeWithDictionaryRepresentation(points.objectAtIndex(0) as! CFDictionaryRef, &point)
+            CGPointMakeWithDictionaryRepresentation((points.objectAtIndex(0) as! CFDictionaryRef), &point)
             CGPathMoveToPoint(path, nil, point.x, point.y)
             
             var i = 1
             while i < points.count {
-                CGPointMakeWithDictionaryRepresentation(points.objectAtIndex(i) as! CFDictionaryRef, &point)
+                CGPointMakeWithDictionaryRepresentation((points.objectAtIndex(i) as! CFDictionaryRef), &point)
                 CGPathAddLineToPoint(path, nil, point.x, point.y)
                 i++
             }

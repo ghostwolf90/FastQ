@@ -32,9 +32,9 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         canDisplayBannerAds = true
-        var urlPath:String = htmlUrl
-        var url:NSURL = NSURL(string:urlPath)!
-        var request:NSURLRequest = NSURLRequest(URL:url)
+        let urlPath:String = htmlUrl
+        let url:NSURL = NSURL(string:urlPath)!
+        let request:NSURLRequest = NSURLRequest(URL:url)
         
         //add refresh
         self.showWeb.delegate = self
@@ -48,7 +48,7 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
     }
     
     @IBAction func backToView(sender: AnyObject) {
-        var vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
+        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
         self.showDetailViewController(vc, sender: self)
     }
     
@@ -104,7 +104,7 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var svc = segue.destinationViewController as! ViewController
+        _ = segue.destinationViewController as! ViewController
     }
 
     override func didReceiveMemoryWarning() {
