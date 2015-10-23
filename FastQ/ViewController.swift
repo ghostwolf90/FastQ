@@ -15,11 +15,12 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var device : AVCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
     var tempQrcode: String!
     var i:Int = 0
-    
+    /*
     //lazy 使用才會產生; input用鏡頭去做接收資料
     lazy var deviceInput : AVCaptureDeviceInput = {
         return AVCaptureDeviceInput(device: self.device, error: nil)
         }()
+    */
     //輸出，掃瞄到的文字
     var metadataOutput : AVCaptureMetadataOutput = AVCaptureMetadataOutput()
     //當做input & Output 橋樑，開關
@@ -34,15 +35,24 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         session.addOutput(metadataOutput)
-        session.addInput(deviceInput)
+        //session.addInput(deviceInput)
+        var error:NSError?
+        do {
+            let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            let input = try AVCaptureDeviceInput(device: captureDevice)
+            // Do the rest of your work...
+            session.addInput(input as AVCaptureInput)
+        } catch let error as NSError {
+            // Handle any errors
+            print(error)
+        }
+
         metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        
         metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         previewLayer.frame = view.bounds
         view.layer.insertSublayer(previewLayer, atIndex: 0)
         targetLayer.frame = view.bounds
         view.layer.addSublayer(targetLayer)
-        
         //開始做掃描
         session.startRunning()
     }
