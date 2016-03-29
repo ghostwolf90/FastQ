@@ -15,6 +15,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     var device : AVCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
     var tempQrcode: String!
     var i:Int = 0
+    // Added to support different barcodes
+    let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     /*
     //lazy 使用才會產生; input用鏡頭去做接收資料
     lazy var deviceInput : AVCaptureDeviceInput = {
@@ -34,9 +36,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            
         session.addOutput(metadataOutput)
-        //session.addInput(deviceInput)
-        var error:NSError?
         do {
             let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
             let input = try AVCaptureDeviceInput(device: captureDevice)
@@ -48,7 +49,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
 
         metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        
         metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+        //metadataOutput.metadataObjectTypes = supportedBarCodes
         previewLayer.frame = view.bounds
         view.layer.insertSublayer(previewLayer, atIndex: 0)
         targetLayer.frame = view.bounds
@@ -70,7 +73,9 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         clearTargetLayer()
         
         for current in metadataObjects{
+            
             if var readableCodeObject = current as? AVMetadataMachineReadableCodeObject{
+                
                 readableCodeObject = previewLayer.transformedMetadataObjectForMetadataObject(readableCodeObject)as! AVMetadataMachineReadableCodeObject
                 showDetectedObjects(readableCodeObject)
                 
@@ -145,7 +150,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
