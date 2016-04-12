@@ -36,7 +36,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         session.addOutput(metadataOutput)
         do {
             let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -49,7 +49,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
 
         metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
-        
         metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         //metadataOutput.metadataObjectTypes = supportedBarCodes
         previewLayer.frame = view.bounds
@@ -58,6 +57,8 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         view.layer.addSublayer(targetLayer)
         //開始做掃描
         session.startRunning()
+        
+        showTargetObjects()
     }
     
     func clearTargetLayer(){
@@ -118,6 +119,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         self.showDetailViewController(nc, sender: self)
     }
     
+   //畫綠框
     func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){
         let shapeLayer = CAShapeLayer()
         shapeLayer.strokeColor = UIColor.greenColor().CGColor
@@ -126,6 +128,14 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         let path = createPathForPoints(codeObject.corners)
         shapeLayer.path = path
         targetLayer.addSublayer(shapeLayer)
+    }
+    
+    func showTargetObjects() {
+        let layer = CAShapeLayer()
+        layer.path = UIBezierPath(roundedRect: CGRect(x:110, y: 250, width: 150, height: 150), cornerRadius: 50).CGPath
+        //layer.fillColor = UIColor.redColor().CGColor
+        layer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
+        view.layer.addSublayer(layer)
     }
     
     func createPathForPoints(points: NSArray) -> CGMutablePathRef{
@@ -140,7 +150,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
             while i < points.count {
                 CGPointMakeWithDictionaryRepresentation((points.objectAtIndex(i) as! CFDictionaryRef), &point)
                 CGPathAddLineToPoint(path, nil, point.x, point.y)
-                i++
+                i = i + 1
             }
             CGPathCloseSubpath(path)
             
