@@ -11,8 +11,8 @@ import AVFoundation
 
 class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     // 初始化
-    var userDefult = NSUserDefaults.standardUserDefaults()
-    var device : AVCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+    var userDefult = UserDefaults.standard
+    var device : AVCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var tempQrcode: String!
     var i:Int = 0
     // Added to support different barcodes
@@ -39,7 +39,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         
         session.addOutput(metadataOutput)
         do {
-            let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+            let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
             let input = try AVCaptureDeviceInput(device: captureDevice)
             // Do the rest of your work...
             session.addInput(input as AVCaptureInput)
@@ -48,11 +48,11 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
             print(error)
         }
 
-        metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         //metadataOutput.metadataObjectTypes = supportedBarCodes
         previewLayer.frame = view.bounds
-        view.layer.insertSublayer(previewLayer, atIndex: 0)
+        view.layer.insertSublayer(previewLayer, at: 0)
         targetLayer.frame = view.bounds
         view.layer.addSublayer(targetLayer)
         //開始做掃描
@@ -69,7 +69,7 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         clearTargetLayer()
         
@@ -77,19 +77,19 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
             
             if var readableCodeObject = current as? AVMetadataMachineReadableCodeObject{
                 
-                readableCodeObject = previewLayer.transformedMetadataObjectForMetadataObject(readableCodeObject)as! AVMetadataMachineReadableCodeObject
+                readableCodeObject = previewLayer.transformedMetadataObject(for: readableCodeObject)as! AVMetadataMachineReadableCodeObject
                 showDetectedObjects(readableCodeObject)
                 
                 let scanCodeOutput = readableCodeObject.stringValue
                 tempQrcode = readableCodeObject.stringValue
                 
                 if scanCodeOutput != nil {
-                    let alert = UIAlertController(title: "GO!", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.ActionSheet)
-                    alert.addAction(UIAlertAction(title:"Enter",style:UIAlertActionStyle.Default, handler:{(UIAlertAction) -> Void in
+                    let alert = UIAlertController(title: "GO!", message: scanCodeOutput, preferredStyle: UIAlertControllerStyle.actionSheet)
+                    alert.addAction(UIAlertAction(title:"Enter",style:UIAlertActionStyle.default, handler:{(UIAlertAction) -> Void in
                         print("你點擊了確定!")
                         self.showQrcodeToWeb()
                     }))
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
@@ -97,62 +97,66 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     //to make interface-based adjustments
     //每次你旋转屏幕时都会调用这个方法
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
         previewLayer.removeFromSuperlayer()
-        if (toInterfaceOrientation == UIInterfaceOrientation.Portrait){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.Portrait
-        }else if(toInterfaceOrientation == UIInterfaceOrientation.LandscapeLeft){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeLeft
-        }else if (toInterfaceOrientation == UIInterfaceOrientation.LandscapeRight){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.LandscapeRight
+        if (toInterfaceOrientation == UIInterfaceOrientation.portrait){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
+        }else if(toInterfaceOrientation == UIInterfaceOrientation.landscapeLeft){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
+        }else if (toInterfaceOrientation == UIInterfaceOrientation.landscapeRight){
+            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.landscapeRight
         }
-        previewLayer.frame = CGRectMake(0, 0, view.frame.height, view.frame.width)
-        view.layer.insertSublayer(previewLayer, atIndex: 0)
+        previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.width)
+        view.layer.insertSublayer(previewLayer, at: 0)
     }
     
     func showQrcodeToWeb(){
         session.stopRunning()
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("showWeb") as! showWebViewController
-        let nc = self.storyboard?.instantiateViewControllerWithIdentifier("nc") as! UINavigationController
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "showWeb") as! showWebViewController
+        let nc = self.storyboard?.instantiateViewController(withIdentifier: "nc") as! UINavigationController
         nc.pushViewController(vc, animated: false)
         vc.htmlUrl = tempQrcode
         self.showDetailViewController(nc, sender: self)
     }
     
    //畫綠框
-    func showDetectedObjects(codeObject:AVMetadataMachineReadableCodeObject){
+    func showDetectedObjects(_ codeObject:AVMetadataMachineReadableCodeObject){
         let shapeLayer = CAShapeLayer()
-        shapeLayer.strokeColor = UIColor.greenColor().CGColor
+        shapeLayer.strokeColor = UIColor.green.cgColor
         shapeLayer.lineWidth = 2
-        shapeLayer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
-        let path = createPathForPoints(codeObject.corners)
+        shapeLayer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
+        let path = createPathForPoints(codeObject.corners as NSArray)
         shapeLayer.path = path
         targetLayer.addSublayer(shapeLayer)
     }
     
     func showTargetObjects() {
         let layer = CAShapeLayer()
-        layer.path = UIBezierPath(roundedRect: CGRect(x:110, y: 250, width: 150, height: 150), cornerRadius: 50).CGPath
+        layer.path = UIBezierPath(roundedRect: CGRect(x:110, y: 250, width: 150, height: 150), cornerRadius: 50).cgPath
         //layer.fillColor = UIColor.redColor().CGColor
-        layer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).CGColor
+        layer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3).cgColor
         view.layer.addSublayer(layer)
     }
     
-    func createPathForPoints(points: NSArray) -> CGMutablePathRef{
-        let path = CGPathCreateMutable()
+    func createPathForPoints(_ points: NSArray) -> CGMutablePath{
+        let path = CGMutablePath()
         var point = CGPoint()
         
         if points.count > 0 {
-            CGPointMakeWithDictionaryRepresentation((points.objectAtIndex(0) as! CFDictionaryRef), &point)
-            CGPathMoveToPoint(path, nil, point.x, point.y)
+            let point = CGPoint(dictionaryRepresentation:points[0] as! CFDictionary)
+            let path = CGMutablePath()
+            path.move(to: CGPoint(x: (point?.x)!, y: (point?.y)!))
+            path.addLine(to: CGPoint(x: (point?.x)!, y: (point?.y)!))
             
             var i = 1
             while i < points.count {
-                CGPointMakeWithDictionaryRepresentation((points.objectAtIndex(i) as! CFDictionaryRef), &point)
-                CGPathAddLineToPoint(path, nil, point.x, point.y)
+                let point = CGPoint(dictionaryRepresentation:points[0] as! CFDictionary)
+                let path = CGMutablePath()
+                path.move(to: CGPoint(x: (point?.x)!, y: (point?.y)!))
+                path.addLine(to: CGPoint(x: (point?.x)!, y: (point?.y)!))
                 i = i + 1
             }
-            CGPathCloseSubpath(path)
+            path.closeSubpath()
             
         }
         return path

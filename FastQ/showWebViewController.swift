@@ -33,8 +33,8 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
         super.viewDidLoad()
         canDisplayBannerAds = true
         let urlPath:String = htmlUrl
-        let url:NSURL = NSURL(string:urlPath)!
-        let request:NSURLRequest = NSURLRequest(URL:url)
+        let url:URL = URL(string:urlPath)!
+        let request:URLRequest = URLRequest(url:url)
         
         //add refresh
         self.showWeb.delegate = self
@@ -44,41 +44,41 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
         
         self.canDisplayBannerAds = true
         self.adBannerView?.delegate = self
-        self.adBannerView?.hidden = true
+        self.adBannerView?.isHidden = true
     }
     
-    @IBAction func backToView(sender: AnyObject) {
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("scanView") as! ViewController
+    @IBAction func backToView(_ sender: AnyObject) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "scanView") as! ViewController
         self.showDetailViewController(vc, sender: self)
     }
     
     
-    func bannerViewWillLoadAd(banner: ADBannerView!) {
+    func bannerViewWillLoadAd(_ banner: ADBannerView!) {
         
     }
     
-    func bannerViewDidLoadAd(banner: ADBannerView!) {
-        self.adBannerView?.hidden = false
+    func bannerViewDidLoadAd(_ banner: ADBannerView!) {
+        self.adBannerView?.isHidden = false
     }
     
-    func bannerViewActionDidFinish(banner: ADBannerView!) {
+    func bannerViewActionDidFinish(_ banner: ADBannerView!) {
         
     }
     
-    func bannerViewActionShouldBegin(banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
+    func bannerViewActionShouldBegin(_ banner: ADBannerView!, willLeaveApplication willLeave: Bool) -> Bool {
         
         return true
     }
     
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-            self.adBannerView?.hidden = true
+    func bannerView(_ banner: ADBannerView!, didFailToReceiveAdWithError error: Error!) {
+            self.adBannerView?.isHidden = true
     }
     
     //分享按钮事件 至Safari
-    @IBAction func shareUp(sender: AnyObject) {
+    @IBAction func shareUp(_ sender: AnyObject) {
         //Link to Safari
-        if let requestUrl = NSURL(string: htmlUrl) {
-            UIApplication.sharedApplication().openURL(requestUrl)
+        if let requestUrl = URL(string: htmlUrl) {
+            UIApplication.shared.openURL(requestUrl)
         }
         /*
         var controller:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeSinaWeibo)
@@ -89,22 +89,22 @@ class showWebViewController: UIViewController, UIWebViewDelegate, ADBannerViewDe
     }
     
     //隱藏導覽列
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(animated)
         //self.navigationController?.hidesBarsOnSwipe = true
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         activityIndicator.stopAnimating()
     }
     
-    func refreshWebView(refresh:UIRefreshControl){
+    func refreshWebView(_ refresh:UIRefreshControl){
         self.showWeb.reload()
         refresh.endRefreshing()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        _ = segue.destinationViewController as! ViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        _ = segue.destination as! ViewController
     }
 
     override func didReceiveMemoryWarning() {
