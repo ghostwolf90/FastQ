@@ -1,6 +1,8 @@
 # FastQ紀錄手冊
 這份手冊主要紀錄swift撰寫FastQ app 技術過程及重點。
 
+[![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
+
 ## 使用技術部份
 * [不使用segue畫面切換（Dot-use segue）](#dot-use-segue)
 * [使用等待refresh (Use-refresh)](#use-refresh)
