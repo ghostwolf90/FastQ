@@ -9,20 +9,19 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
+class ViewController: UIViewController{
+    @IBOutlet weak var scanView: UIView!
+    
     // 初始化
     var userDefult = UserDefaults.standard
-    var device : AVCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
     var tempQrcode: String!
     var i:Int = 0
+    
+    var captureSession:AVCaptureSession?
+    var videoPreviewLayer:AVCaptureVideoPreviewLayer?
+    let supportedCodeTypes = [AVMetadataObject.ObjectType.qr]
     // Added to support different barcodes
-    let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
-    /*
-    //lazy 使用才會產生; input用鏡頭去做接收資料
-    lazy var deviceInput : AVCaptureDeviceInput = {
-        return AVCaptureDeviceInput(device: self.device, error: nil)
-        }()
-    */
+    
     //輸出，掃瞄到的文字
     var metadataOutput : AVCaptureMetadataOutput = AVCaptureMetadataOutput()
     //當做input & Output 橋樑，開關
@@ -37,28 +36,10 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        session.addOutput(metadataOutput)
-        do {
-            let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            // Do the rest of your work...
-            session.addInput(input as AVCaptureInput)
-        } catch let error as NSError {
-            // Handle any errors
-            print(error)
-        }
-
-        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
-        //metadataOutput.metadataObjectTypes = supportedBarCodes
-        previewLayer.frame = view.bounds
-        view.layer.insertSublayer(previewLayer, at: 0)
-        targetLayer.frame = view.bounds
-        view.layer.addSublayer(targetLayer)
-        //開始做掃描
-        session.startRunning()
-        
-        showTargetObjects()
+        #if !((arch(i386) || arch(x86_64)) && os(iOS))
+        starScanner()
+        #endif
+        addMaskRect()
     }
     
     func clearTargetLayer(){
@@ -97,18 +78,18 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     //to make interface-based adjustments
     //每次你旋转屏幕时都会调用这个方法
-    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
-        previewLayer.removeFromSuperlayer()
-        if (toInterfaceOrientation == UIInterfaceOrientation.portrait){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.portrait
-        }else if(toInterfaceOrientation == UIInterfaceOrientation.landscapeLeft){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
-        }else if (toInterfaceOrientation == UIInterfaceOrientation.landscapeRight){
-            previewLayer.connection.videoOrientation = AVCaptureVideoOrientation.landscapeRight
-        }
-        previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.width)
-        view.layer.insertSublayer(previewLayer, at: 0)
-    }
+//    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+//        previewLayer.removeFromSuperlayer()
+//        if (toInterfaceOrientation == UIInterfaceOrientation.portrait){
+//            previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.portrait
+//        }else if(toInterfaceOrientation == UIInterfaceOrientation.landscapeLeft){
+//            previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeLeft
+//        }else if (toInterfaceOrientation == UIInterfaceOrientation.landscapeRight){
+//            previewLayer.connection?.videoOrientation = AVCaptureVideoOrientation.landscapeRight
+//        }
+//        previewLayer.frame = CGRect(x: 0, y: 0, width: view.frame.height, height: view.frame.width)
+//        view.layer.insertSublayer(previewLayer, at: 0)
+//    }
     
     func showQrcodeToWeb(){
         session.stopRunning()
@@ -140,7 +121,6 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
     
     func createPathForPoints(_ points: NSArray) -> CGMutablePath{
         let path = CGMutablePath()
-        var point = CGPoint()
         
         if points.count > 0 {
             let point = CGPoint(dictionaryRepresentation:points[0] as! CFDictionary)
@@ -161,11 +141,100 @@ class ViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
         }
         return path
     }
+    
+    func starScanner() {
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
+        //CrashReport.log("掃描載具啟動")
+        do {
+            // Get an instance of the AVCaptureDeviceInput class using the previous device object.
+            let input = try AVCaptureDeviceInput(device: captureDevice!)
+            
+            // Initialize the captureSession object.
+            captureSession = AVCaptureSession()
+            
+            // Set the input device on the capture session.
+            captureSession?.addInput(input)
+            
+            // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
+            let captureMetadataOutput = AVCaptureMetadataOutput()
+            captureSession?.addOutput(captureMetadataOutput)
+            
+            // Set delegate and use the default dispatch queue to execute the call back
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+            captureMetadataOutput.metadataObjectTypes = supportedCodeTypes
+            
+            // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
+            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+            videoPreviewLayer?.videoGravity = .resizeAspectFill
+            videoPreviewLayer?.frame = CGRect(x: 0, y: 0, width: scanView.frame.size.width, height:scanView.frame.size.height)
+            scanView.layer.addSublayer(videoPreviewLayer!)
+            
+            //檢查目前方向並轉向正確方位
+            videoPreviewLayer?.connection?.videoOrientation = .portrait
+//            if UIApplication.shared.statusBarOrientation == .landscapeLeft{
+//                videoPreviewLayer?.connection?.videoOrientation = .landscapeLeft
+//            }else{
+//                videoPreviewLayer?.connection?.videoOrientation = .landscapeRight
+//            }
+            
+            // Start video capture.
+            self.switchScanner(isOpen: true)
+        } catch {
+            print(error)
+            return
+        }
+    }
+    
+    func switchScanner(isOpen:Bool){
+        if isOpen{
+            captureSession?.startRunning()
+        }else{
+            captureSession?.stopRunning()
+        }
+    }
+    
+    func addMaskRect(){
+        // 中間簍空範圍
+        let rect = CGRect(x: 25, y: 70, width: 326, height: 479)
+        let rectCornerRadius = 4.0
+        
+        let path = UIBezierPath(rect: CGRect(x: 0, y: 0, width: scanView.frame.width, height: scanView.frame.height))
+        let roundRectPath = UIBezierPath(roundedRect: rect, cornerRadius: CGFloat(rectCornerRadius))
+        
+        path.append(roundRectPath)
+        path.usesEvenOddFillRule = true
+        
+        
+        let fillLayer = CAShapeLayer()
+        fillLayer.path = path.cgPath
+        fillLayer.fillRule = kCAFillRuleEvenOdd
+        fillLayer.fillColor = UIColor.black.cgColor
+        fillLayer.opacity = 0.3
+        scanView.layer.addSublayer(fillLayer)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+}
 
-
+extension ViewController: AVCaptureMetadataOutputObjectsDelegate{
+    
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        if metadataObjects.isEmpty == true || metadataObjects.count == 0 {
+            print("掃描沒有成功，對準鏡頭再掃描看看!")
+            return
+        }
+        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        
+        if supportedCodeTypes.contains(metadataObj.type) {
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
+            
+            if metadataObj.stringValue != nil {
+                self.switchScanner(isOpen: false)
+            }
+        }
+    }
 }
 

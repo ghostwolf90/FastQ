@@ -15,14 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Change navigation bar appearance
-        //UINavigationBar.appearance().barTintColor = UIColor(red: 231.0/255.0, green: 95.0/255.0, blue: 53.0/255.0, alpha: 0.3)
-        UINavigationBar.appearance().barTintColor = UIColor(red: 0.0/255.0, green: 240.0/255.0, blue: 70.0/255.0, alpha: 0.3)
-        UINavigationBar.appearance().tintColor = UIColor.white
-        if let barFont = UIFont(name: "AvenirNextCondensed-DemiBold", size: 22.0) {
-            UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white, NSFontAttributeName:barFont]
-        }
-        
         // Change status bar style
         UIApplication.shared.statusBarStyle = .lightContent
         
