@@ -1,4 +1,4 @@
-# FastQ紀錄手冊
+# FastQ紀錄手冊 ![](https://img.shields.io/badge/language-swift-orange.svg)
 這份手冊主要紀錄swift撰寫FastQ app 技術過程及重點。
 
 [![](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
